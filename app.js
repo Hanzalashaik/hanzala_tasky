@@ -1,16 +1,22 @@
 import readline from "readline-sync"
 import register from "./register.js";
 import login from "./login.js";
+import color from "cli-color"
 
 export default async function main(){
 
     try{
-        console.log(` 
-    ----------------------------------------------------------------
+
+
+        let c1=color.xterm(118)
+        let c2=color.xterm(7);
+        let c3=color.xterm(75);
+        let c4=color.xterm(218);
+        console.log(c1(
+   `    ----------------------------------------------------------------
     ---------------------WELCOME TO HANZALA'S TASKY-----------------
     -------------------------SELECT THE OPTIONS---------------------
-    ----------------------------------------------------------------
-    `);
+    ----------------------------------------------------------------`));
     
     let options=["For Exit","Register","Login"]
 
@@ -22,7 +28,6 @@ export default async function main(){
 
     if(option< 0 || option>3 ||option==0){
         console.log("Invalid Entry");
-        
     }
 
 
@@ -32,15 +37,27 @@ export default async function main(){
         break
         
     case "2":
+        console.clear()
+        console.log(c1(
+       `        ----------------------------------------------------------------
+        --------------------------REGISTER HERE-------------------------
+        ----------------------------------------------------------------`));
+        
         await register();
         break;
 
     case "3":
+        console.clear();
+        console.log(c1(
+           `        ----------------------------------------------------------------
+            --------------------------LOGIN HERE----------------------------
+            ----------------------------------------------------------------`));
+        
         await login();
         break;
         
     default:
-        console.log("Invalid Entry");
+        console.log(c3("Invalid Entry"));
         break;        
     }
     }catch(e){

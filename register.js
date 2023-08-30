@@ -1,17 +1,39 @@
 import readline from "readline-sync";
 import fs from "fs/promises";
+import color from "cli-color";
+import loading from "loading-cli";
 
 export default async function register() {
   try {
-    let firstName = readline.question("Enter your name:");
-    let lastName = readline.question("Enter your last name:");
-    let email = readline.questionEMail("Enter your email:");
-    let password = readline.question("Enter Password:", { hideEchoBack: true });
-    let reEnter = readline.question("Re-type Password:", {
-      hideEchoBack: true,
-    });
-    
-    let phonenumber = readline.questionInt("Enter your phone number:");
+    let c2 = color.xterm(162);
+    let c3 = color.xterm(160);
+    let c4 = color.xterm(191);
+
+    let firstName = readline.question(c2("Enter your name:"));
+    let lastName = readline.question(c2("Enter your last name:"));
+    let email = readline.questionEMail(c2("Enter your email:"));
+    let password = readline.question(
+      c2("Enter Password:"), { hideEchoBack: true }
+    );
+    let reEnter = readline.question(
+      c4("Re-type Password:"), {
+        hideEchoBack: true,
+      }
+    );
+
+    recheck();
+
+    function recheck() {
+      if (password !== reEnter) {
+        console.log("Password doesn't match!!");
+        reEnter = readline.question(c4("Re-type Password:"), {
+          hideEchoBack: true,
+        });
+        recheck();
+      }
+    }
+
+    let phonenumber = readline.questionInt(c2("Enter your phone number:"));
     checker(phonenumber);
 
     function checker(phonenumber) {
@@ -20,11 +42,11 @@ export default async function register() {
 
       if (str.length !== 10) {
         console.log("Invalid phone number!!!");
-        phonenumber = readline.questionInt("Enter your phone number:");
+        phonenumber = readline.questionInt(c2("Enter your phone number:"));
         checker(phonenumber);
       }
     }
-    let address = readline.question("Enter your address:");
+    let address = readline.question(c2("Enter your address:"));
 
     let data = {
       firstName,
@@ -36,31 +58,34 @@ export default async function register() {
       address,
     };
 
-
     let read = await fs.readFile("db.json", "utf-8");
     let stringtoobject = JSON.parse(read);
-    
+
     let isDuplicate = stringtoobject.some((element) => {
       // console.log(element.email);
-      
-        return element.email === data.email || element.phonenumber === data.phonenumber;
+
+      return (
+        element.email === data.email || element.phonenumber === data.phonenumber
+      );
     });
     stringtoobject.push(data);
 
-
     if (isDuplicate) {
-        console.log("Oops Same Entry try again!!!");
+      console.log(c3("Oops Same Entry try again!!!"));
+    } else {
+      let objecttostring = JSON.stringify(stringtoobject);
+      await fs.writeFile("db.json", objecttostring);
+      let load=loading({
+        frames:["🕑","🕒","🕓","🕔","🕕","🕖","🕗","🕘","🕙","🕚","🕛"],
+        interval:200
+      }).start()
+
+      setTimeout(()=>{
+        load.stop();
+        console.log(c4("Entry added successfully!"));
+      },3000)
+     
     }
-    else if (password !== reEnter) {
-      console.log("Password doesn't match!!");
-      return;
-    } 
-    else {
-        let objecttostring = JSON.stringify(stringtoobject);
-        await fs.writeFile("db.json", objecttostring);
-        console.log("Entry added successfully!");
-    }
-   
   } catch (e) {
     console.log("error from register.js", e);
   }
