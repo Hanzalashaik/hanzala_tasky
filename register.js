@@ -12,14 +12,12 @@ export default async function register() {
     let firstName = readline.question(c2("Enter your name:"));
     let lastName = readline.question(c2("Enter your last name:"));
     let email = readline.questionEMail(c2("Enter your email:"));
-    let password = readline.question(
-      c2("Enter Password:"), { hideEchoBack: true }
-    );
-    let reEnter = readline.question(
-      c4("Re-type Password:"), {
-        hideEchoBack: true,
-      }
-    );
+    let password = readline.question(c2("Enter Password:"), {
+      hideEchoBack: true,
+    });
+    let reEnter = readline.question(c4("Re-type Password:"), {
+      hideEchoBack: true,
+    });
 
     recheck();
 
@@ -75,16 +73,27 @@ export default async function register() {
     } else {
       let objecttostring = JSON.stringify(stringtoobject);
       await fs.writeFile("db.json", objecttostring);
-      let load=loading({
-        frames:["🕑","🕒","🕓","🕔","🕕","🕖","🕗","🕘","🕙","🕚","🕛"],
-        interval:200
-      }).start()
+      let load = loading({
+        frames: [
+          "🕑",
+          "🕒",
+          "🕓",
+          "🕔",
+          "🕕",
+          "🕖",
+          "🕗",
+          "🕘",
+          "🕙",
+          "🕚",
+          "🕛",
+        ],
+        interval: 200,
+      }).start();
 
-      setTimeout(()=>{
+      setTimeout(() => {
         load.stop();
         console.log(c4("Entry added successfully!"));
-      },3000)
-     
+      }, 3000);
     }
   } catch (e) {
     console.log("error from register.js", e);
