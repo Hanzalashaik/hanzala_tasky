@@ -2,12 +2,23 @@ import readline from "readline-sync";
 import fs from "fs/promises";
 import color from "cli-color";
 import loading from "loading-cli";
+import login from "./login.js";
 
 export default async function register() {
   try {
+    let c1 = color.xterm(118);
     let c2 = color.xterm(162);
     let c3 = color.xterm(160);
     let c4 = color.xterm(191);
+    console.clear();
+        console.log(
+          c1(
+            `        ----------------------------------------------------------------
+        --------------------------REGISTER HERE-------------------------
+        ----------------------------------------------------------------`
+          )
+        );
+
 
     let firstName = readline.question(c2("Enter your name:"));
     let lastName = readline.question(c2("Enter your last name:"));
@@ -54,22 +65,30 @@ export default async function register() {
       reEnter,
       phonenumber,
       address,
+      
     };
-
+    data.task=[];
+    
     let read = await fs.readFile("db.json", "utf-8");
     let stringtoobject = JSON.parse(read);
-
+    
     let isDuplicate = stringtoobject.some((element) => {
       // console.log(element.email);
 
       return (
         element.email === data.email || element.phonenumber === data.phonenumber
+        );
+      });
+      stringtoobject.push(data);
+      
+      if (isDuplicate) {
+        console.log(c3("Oops Same Entry try again!!!"));
+      console.log(
+        `        ----------------------------------------------------------------
+        --------------------------TRY AGAIN-------------------------
+        ----------------------------------------------------------------`
       );
-    });
-    stringtoobject.push(data);
-
-    if (isDuplicate) {
-      console.log(c3("Oops Same Entry try again!!!"));
+      register();
     } else {
       let objecttostring = JSON.stringify(stringtoobject);
       await fs.writeFile("db.json", objecttostring);
@@ -89,10 +108,12 @@ export default async function register() {
         ],
         interval: 200,
       }).start();
-
+      
       setTimeout(() => {
         load.stop();
         console.log(c4("Entry added successfully!"));
+        console.clear();
+        login();
       }, 3000);
     }
   } catch (e) {

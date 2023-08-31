@@ -9,6 +9,8 @@ export default async function main() {
     let c2 = color.xterm(7);
     let c3 = color.xterm(75);
     let c4 = color.xterm(218);
+
+    console.clear();
     console.log(
       c1(
         `    ----------------------------------------------------------------
@@ -37,28 +39,11 @@ export default async function main() {
         break;
 
       case "2":
-        console.clear();
-        console.log(
-          c1(
-            `        ----------------------------------------------------------------
-        --------------------------REGISTER HERE-------------------------
-        ----------------------------------------------------------------`
-          )
-        );
 
         await register();
         break;
 
       case "3":
-        console.clear();
-        console.log(
-          c1(
-            `        ----------------------------------------------------------------
-            --------------------------LOGIN HERE----------------------------
-            ----------------------------------------------------------------`
-          )
-        );
-
         await login();
         break;
 

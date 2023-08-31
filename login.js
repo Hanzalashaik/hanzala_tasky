@@ -3,11 +3,22 @@ import fs from "fs/promises";
 import color from "cli-color";
 import register from "./register.js";
 import loading from "loading-cli";
+import task from "./addtask.js";
 
 export default async function login() {
+  let c1 = color.xterm(118);
   let c2 = color.xterm(162);
   let c3 = color.xterm(160);
   let c4 = color.xterm(191);
+
+  console.clear();
+        console.log(
+          c1(
+            `        ----------------------------------------------------------------
+            --------------------------LOGIN HERE----------------------------
+            ----------------------------------------------------------------`
+          )
+        );
 
   let email = readline.questionEMail(c2("Enter your Email:"));
   let password = readline.question(c2("Enter your Password:"), {
@@ -26,8 +37,6 @@ export default async function login() {
 
   let stringtoobject = JSON.parse(read); //[]
 
-  //   stringtoobject.push(data);
-
   let isSame = stringtoobject.find((element) => {
     if (element.email === data.email) {
       return true;
@@ -35,14 +44,13 @@ export default async function login() {
       return false;
     }
   });
-  //   console.log("data",data.password);
-
-  //   console.log("isSame",isSame.password);
 
   let count = 0;
 
   if (isSame) {
     if (isSame.password === data.password) {
+      console.log(`Wait for few seconds ....`);
+
       let load = loading({
         frames: [
           "🕑",
@@ -57,11 +65,12 @@ export default async function login() {
           "🕚",
           "🕛",
         ],
-        interval: 200,
+        interval: 500,
       }).start();
 
       setTimeout(() => {
         load.stop();
+        task();
         console.log(c4("Sucessfully loged in!!"));
       }, 3000);
     } else {
@@ -73,6 +82,7 @@ export default async function login() {
     }
   } else {
     console.log(c3("Wrong Email !!"));
+    console.log(c3("Try Again !!"));
     login();
     count++;
     console.log(count);
@@ -90,3 +100,4 @@ export default async function login() {
     }
   }
 }
+
