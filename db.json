@@ -1,15 +1,5 @@
 [
   {
-    "firstName": "suhail",
-    "lastName": "roushan",
-    "email": "suhail@gmail.in",
-    "password": "123",
-    "reEnter": "123",
-    "phonenumber": 6473874567,
-    "address": "hyd",
-    "task": []
-  },
-  {
     "firstName": "shaik",
     "lastName": "hanzala",
     "email": "hanzala@gmail.com",
@@ -17,6 +7,22 @@
     "reEnter": "123143",
     "phonenumber": 7584536748,
     "address": "hyd",
-    "task": [{ "id": "4l0km3y0o2", "todo": "stduy" }]
+    "task": [
+      { "id": "adfhj23323", "todo": "study" },
+      {
+        "id": "fdh323jn",
+        "todo": "go to sleep"
+      }
+    ]
+  },
+  {
+    "firstName": "suhail",
+    "lastName": "roushan",
+    "email": "suhail@gmail.in",
+    "password": "123",
+    "reEnter": "123",
+    "phonenumber": 7584536454,
+    "address": "hyd",
+    "task": []
   }
 ]

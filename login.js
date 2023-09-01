@@ -6,6 +6,8 @@ import loading from "loading-cli";
 import task from "./addtask.js";
 
 export default async function login() {
+
+  try{
   let c1 = color.xterm(118);
   let c2 = color.xterm(162);
   let c3 = color.xterm(160);
@@ -99,5 +101,9 @@ export default async function login() {
       register();
     }
   }
+}catch(error){
+  console.log(error);
+  
+}
 }
 
