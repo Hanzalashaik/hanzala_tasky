@@ -8,11 +8,8 @@
     "phonenumber": 7584536748,
     "address": "hyd",
     "task": [
-      { "id": "adfhj23323", "todo": "study" },
-      {
-        "id": "fdh323jn",
-        "todo": "go to sleep"
-      }
+      { "id": "adfhj23323", "todo": "" },
+      { "id": "fdh323jn", "todo": "go to sleep" }
     ]
   },
   {
@@ -23,6 +20,9 @@
     "reEnter": "123",
     "phonenumber": 7584536454,
     "address": "hyd",
-    "task": []
+    "task": [
+      { "id": "gfhdhj23323", "todo": "study" },
+      { "id": "fdh234jn", "todo": "do coding" }
+    ]
   }
 ]
