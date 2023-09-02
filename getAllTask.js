@@ -1,33 +1,57 @@
-import fs from "fs/promises"
+import fs from "fs/promises";
 import readline from "readline-sync";
+import color from "cli-color";
+import main from "./app.js";
+import loading from "loading-cli";
+export default async function getall() {
+  try {
+    console.clear();
+    let c1 = color.xterm(118);
 
+    console.log(
+      c1(
+        `        
+          --------------------------GET ALL TASKS-------------------------
+         `
+      )
+    );
+    let email = readline.questionEMail("Enter your Email to check the task:");
+    let read = await fs.readFile("db.json", "utf-8");
 
-export default async function getall(){
+    let stringtoobject = JSON.parse(read);
 
+    let obj = stringtoobject.find((element) => {
+      return element.email === email;
+    });
 
-    try{
+    // console.log(obj);
 
-        console.clear()
-        let email=readline.questionEMail("Enter your Email to check the task:")
-    let read=await fs.readFile("db.json","utf-8")
+    let allTask = obj.task;
+    // console.log(allTask);
 
-    let stringtoobject=JSON.parse(read);
+    let myAllTasks = allTask.map((value) => {
+      return value.todo;
+    });
 
-        let obj=stringtoobject.find((element)=>{
-            return element.email===email;
-        })
     
-        let alltask=obj;
 
-        console.log(alltask.task);
-        
+    myAllTasks.forEach((value,index)=> {
+      console.log(`${index+1}.${value}`);
+            
+    });
+    console.log("Redirecting to home menu in 2 seconds....");
 
+    let load = loading({
+      frames: [1,2,3,4],
+      interval: 600,
+    }).start();
 
-}catch(error){
+    setTimeout(() => {
+      load.stop();
+      main();
+    }, 4000);
+    
+  } catch (error) {
     console.log("Your task is not present.....");
-    
+  }
 }
-
-    
-}
-getall();
