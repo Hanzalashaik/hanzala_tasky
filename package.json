@@ -20,7 +20,10 @@
   "homepage": "https://github.com/Hanzalashaik/hanzala_tasky#readme",
   "dependencies": {
     "cli-color": "^2.0.3",
+    "config": "^3.3.9",
     "loading-cli": "^1.1.0",
-    "readline-sync": "^1.4.10"
+    "nodemailer": "^6.9.4",
+    "readline-sync": "^1.4.10",
+    "twilio": "^4.16.0"
   }
 }
