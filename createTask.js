@@ -2,6 +2,8 @@ import readline from "readline-sync";
 import fs from "fs/promises";
 import main from "./app.js";
 import color from "cli-color";
+import loading from "loading-cli";
+import login from "./login.js"
 
 export default async function createTask() {
   try {
@@ -35,15 +37,22 @@ export default async function createTask() {
       let id = Math.random().toString(36).substr(2, 10);
       let todo = addTodo;
       let deadline = readline.question("Enter your Deadline (dd/mm/yyyy):");
+        
       emailFound.task.push({ id, todo, deadline });
       let writeData = JSON.stringify(stringToObject);
       await fs.writeFile("db.json", writeData);
       console.log("Todo Added Succesfully");
       console.log("Redirecting You To Login 4 Seconds");
 
+      let load = loading({
+        frames: [1, 2, 3, 4],
+        interval: 600,
+      }).start();
+  
       setTimeout(() => {
+        load.stop();
         main();
-      }, 5000);
+      }, 4000);
       
     }
   } catch (error) {

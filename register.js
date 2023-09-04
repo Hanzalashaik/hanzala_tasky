@@ -4,8 +4,9 @@ import color from "cli-color";
 import loading from "loading-cli";
 import main from "./app.js";
 
-import config from "config";
-import Twilio from "twilio";
+import sendSMS from "./utils/sms.js"
+import send_EMAIL from "./utils/email.js"
+import randomNumber from "./utils/randomNumber.js";
 
 export default async function register() {
   try {
@@ -44,55 +45,51 @@ export default async function register() {
       }
     }
 
-    let phonenumber = readline.question(c2("Enter your phone number with +91:"));
+    let phonenumber = readline.question(c2("Enter your phone number"));
+      let verifyPhone = "+91" + phonenumber;
     checker(phonenumber);
 
     function checker(phonenumber) {
       let numberchecker = phonenumber + "";
       let str = numberchecker.split("");
 
-      if (str.length !== 13) {
+      if (str.length !== 10) {
         console.log("Invalid phone number!!!");
         phonenumber = readline.question(c2("Enter your phone number with +91:"));
         checker(phonenumber);
       }
     }
     let address = readline.question(c2("Enter your address:"));
-
-    function randomNumber() {
-      let count = 5;
-      let ran = 0;
-      for (let i = 1; i <= count; i++) {
-        ran = ran * 10 + Math.floor(Math.random() * 10);
-      }
-      return ran;
-    }
-    let otp = randomNumber();
-
-    let { SID, TOKEN, NUMBER } = config.get("SEND_SMS");
-
-    const client = new Twilio(SID, TOKEN);
-
-    async function sendSMS() {
-      try {
-        await client.messages.create({
-          body: `Your OTP is ${otp}`,
-          to: `${phonenumber}`,
-          from: NUMBER,
-        });
-      } catch (error) {
-        console.log(error);
-      }
-    }
-    await sendSMS();
-    let generatedOTP =otp;
-    // console.log(generatedOTP);
+    console.log("Wait for few seconds...");
     
+
+    let otp=randomNumber(5);
+
+    // sending OTP from SMS
+    await sendSMS({
+      body:`Your OTP is ${otp}`,
+      phonenumber:verifyPhone
+
+    });
+    // console.log("send sms");
+    // console.log(otp);
+    
+    
+    
+    // Sending OTP FROM EMAIL
+    await send_EMAIL({
+      subject:"this text subject",
+      text:`Your OTP is ${otp}`,
+      to:email
+  })
+  //  console.log("Send Email");
+  //  console.log(otp);
+   
    
 
     let userOTP = readline.questionInt("Enter your OTP:");
 
-    if (userOTP != generatedOTP) {
+    if (userOTP != otp) {
       console.log("Wrong OTP Resending OTP again..");
       sendSMS();
     } else {
@@ -100,7 +97,7 @@ export default async function register() {
         firstName,
         lastName,
         email,
-        reEnter,
+        password,
         phonenumber,
         address,
       };
@@ -120,13 +117,7 @@ export default async function register() {
       stringtoobject.push(data);
 
       if (isDuplicate) {
-        console.log(c3("Oops Same Entry try again!!!"));
-        console.log(
-          `        ----------------------------------------------------------------
-          --------------------------TRY AGAIN-------------------------
-          ----------------------------------------------------------------`
-        );
-        register();
+        return console.log(c3("Oops Same Entry try again!!!"));
       } else {
         let objecttostring = JSON.stringify(stringtoobject);
         await fs.writeFile("db.json", objecttostring);

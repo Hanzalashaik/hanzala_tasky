@@ -1,31 +1,32 @@
 [
     {
-        "firstName": "hanzala",
-        "lastName": "shaik",
-        "email": "shaik@gmail.com",
-        "reEnter": "123",
-        "phonenumber": 6765456787,
-        "address": "hyd",
-        "task": [
-            {
-                "id": "71rweyf50g",
-                "todo": "do coding",
-                "deadline": "02/03/2023"
-            },
-            {
-                "id": "rweyf50g",
-                "todo": "watching",
-                "deadline": "02/03/2023"
-            }
-        ]
-    },
-    {
         "firstName": "suhail",
         "lastName": "roushan",
         "email": "suhail@code.in",
         "reEnter": "123",
-        "phonenumber": "+916304439802",
+        "phonenumber": "",
         "address": "hyd",
-        "task": []
+        "task": [
+            {
+                "id": "90af49nirq",
+                "todo": "study",
+                "deadline": "20/03/2023"
+            }
+        ]
+    },
+    {
+        "firstName": "hanzala",
+        "lastName": "shaik",
+        "email": "shaik@gmail.com",
+        "password": "123",
+        "phonenumber": "6304439802",
+        "address": "hyd",
+        "task": [
+            {
+                "id": "ld0afeg6ji",
+                "todo": "study",
+                "deadline": "30/03/2023"
+            }
+        ]
     }
 ]

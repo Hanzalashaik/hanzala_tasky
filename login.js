@@ -1,8 +1,8 @@
 import readline from "readline-sync";
 import fs from "fs/promises";
 import color from "cli-color";
-import main from "./app.js"
-
+import main from "./app.js";
+import loading from "loading-cli";
 export default async function login() {
   try {
     let c1 = color.xterm(118);
@@ -31,37 +31,45 @@ export default async function login() {
       email,
       password,
     };
-     
+
     let read = await fs.readFile("db.json", "utf-8"); //"[]"
 
     let stringtoobject = JSON.parse(read); //[]
 
-    
     let emailfound = stringtoobject.find((element) => {
-      return element.email === data.email;
+      return (element.email === data.email)
+    });
+
+    let passwordfound = stringtoobject.find((element) => {
+      return element.password === data.password;
     });
 
 
     
-    if(!emailfound){
+    if (!emailfound || !passwordfound) {
       console.log("wrong email and password try again...");
       console.log("Redirecting to login page in 3 seconds ..");
-      
-      setTimeout(()=>{
-        login()
-      },3000)
 
-           
-    }else{
-      console.log("Sucessfully Loged in Redirecting to Home Menu in 4 seconds..");
+      setTimeout(() => {
+        login();
+      }, 3000);
+
+    } 
+    else {
+      console.log(
+        "Sucessfully Loged in Redirecting to Home Menu in 4 seconds.."
+      );
     }
-    setTimeout(()=>{
+
+    let load = loading({
+      frames: [1, 2, 3, 4],
+      interval: 600,
+    }).start();
+
+    setTimeout(() => {
+      load.stop();
       main();
-    },5000)
-
-
-
-
+    }, 4000);
   } catch (error) {
     console.log(error);
   }
