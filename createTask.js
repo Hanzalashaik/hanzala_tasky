@@ -4,6 +4,7 @@ import main from "./app.js";
 import color from "cli-color";
 import loading from "loading-cli";
 import login from "./login.js"
+import userDate from "./utils/dates.js";
 
 export default async function createTask() {
   try {
@@ -36,9 +37,12 @@ export default async function createTask() {
       let addTodo = readline.question("Enter Your Todo : ");
       let id = Math.random().toString(36).substr(2, 10);
       let todo = addTodo;
-      let deadline = readline.question("Enter your Deadline (dd/mm/yyyy):");
-        
-      emailFound.task.push({ id, todo, deadline });
+      let deadline =readline.question("Enter your Deadline (e.g., 'September 5, 2023', '2023-09-05', or '05042023'): ");
+      
+      let result =userDate(deadline);
+      
+      
+      emailFound.task.push({ id, todo,result });
       let writeData = JSON.stringify(stringToObject);
       await fs.writeFile("db.json", writeData);
       console.log("Todo Added Succesfully");
@@ -46,7 +50,7 @@ export default async function createTask() {
 
       let load = loading({
         frames: [1, 2, 3, 4],
-        interval: 600,
+        interval: 700,
       }).start();
   
       setTimeout(() => {

@@ -46,9 +46,9 @@ export default async function deleteall() {
       console.log("Redirecting to Home Page in 3 seconds ...");
       let load = loading({
         frames: [1, 2, 3, 4],
-        interval: 600,
+        interval: 700,
       }).start();
-
+  
       setTimeout(() => {
         load.stop();
         main();

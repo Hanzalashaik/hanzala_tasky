@@ -42,8 +42,8 @@ export default async function getall() {
     console.log("Redirecting to home menu in 2 seconds....");
 
     let load = loading({
-      frames: [1,2,3,4],
-      interval: 600,
+      frames: [1, 2, 3, 4],
+      interval: 700,
     }).start();
 
     setTimeout(() => {

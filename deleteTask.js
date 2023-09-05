@@ -49,14 +49,14 @@ export default async function taskdelete() {
         console.log("Redirecting to home menu in 4 seconds....");
 
         let load = loading({
-          frames: [1,2,3,4],
-          interval: 600,
+          frames: [1, 2, 3, 4],
+          interval: 700,
         }).start();
-  
+    
         setTimeout(() => {
           load.stop();
           main();
-        }, 2000);
+        }, 4000);
         
       }
     }

@@ -63,7 +63,7 @@ export default async function login() {
 
     let load = loading({
       frames: [1, 2, 3, 4],
-      interval: 600,
+      interval: 700,
     }).start();
 
     setTimeout(() => {

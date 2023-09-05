@@ -1,6 +1,6 @@
 import nodemailer from "nodemailer";
 import config from "config";
-import register from "../register.js";
+
 
 let { HOST, AUTH, PORT } = config.get("EMAIL_SMTP");
 
@@ -31,5 +31,5 @@ export default async function send_EMAIL(emailData) {
 // send_EMAIL({
 //     subject:"this text subject",
 //     text:"text",
-//     to:"shaihhanzala27@gmail.com"
+//     to:"shaikhhanzala27@gmail.com"
 // })

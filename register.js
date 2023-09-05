@@ -65,7 +65,7 @@ export default async function register() {
 
     let otp=randomNumber(5);
 
-    // sending OTP from SMS
+    //sending OTP from SMS
     await sendSMS({
       body:`Your OTP is ${otp}`,
       phonenumber:verifyPhone
@@ -136,7 +136,7 @@ export default async function register() {
             "🕚",
             "🕛",
           ],
-          interval: 200,
+          interval: 700,
         }).start();
         console.log("Redirecting to Home Page please wait....");
         console.log(c4("Entry added successfully!"));
@@ -145,7 +145,7 @@ export default async function register() {
           load.stop();
           console.clear();
           main();
-        }, 3000);
+        }, 4000);
       }
     }
   } catch (e) {
