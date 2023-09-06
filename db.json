@@ -1,1 +1,29 @@
-[{"firstName":"suhail","lastName":"roushan","email":"suhail@code.in","reEnter":"123","phonenumber":"","address":"hyd","task":[{"id":"90af49nirq","todo":"study","deadline":"20/03/2023"},{"id":"ku6xwvhe0t","todo":"running","result":"05/09/2023"},{"id":"3e8073wsfu","todo":"coding","result":"05/09/2023"}]},{"firstName":"hanzala","lastName":"shaik","email":"shaikhhanzala27@gmail.com","password":"123","phonenumber":"6304439802","address":"hyd","task":[{"id":"ld0afeg6ji","todo":"study","deadline":"30/03/2023"}]}]
+[
+    {
+        "firstName": "ali",
+        "lastName": "mohd",
+        "email": "mohd@mgmail.com",
+        "password": "$2b$10$c7TAaDIH3D9pHMzCzFsbOeNacSnruYCy1CGZUQoXe7cheaDvpE8OS",
+        "phonenumber": "7876745635",
+        "address": "hyd",
+        "task": []
+    },
+    {
+        "firstName": "suhail",
+        "lastName": "roushan",
+        "email": "suhail@code.in",
+        "password": "$2b$10$iiZEFcSNMftVr0pGyw2ly.wfPwBsb9qdtvN.B82LJkZNqvVhhosOe",
+        "phonenumber": "6374654657",
+        "address": "hyd",
+        "task": []
+    },
+    {
+        "firstName": "hanzala",
+        "lastName": "shaik",
+        "email": "shaikhhanzala27@gmail.com",
+        "password": "$2b$10$myucvXgkL3yNeS3lUnNPuuX53z25yFRiY8KuJTiIUx.f059daNBpa",
+        "phonenumber": "7564536267",
+        "address": "hyd",
+        "task": []
+    }
+]

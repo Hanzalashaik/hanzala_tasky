@@ -3,11 +3,14 @@ import fs from "fs/promises";
 import color from "cli-color";
 import main from "./app.js";
 import loading from "loading-cli";
+import compareHash from "./utils/bcryptCompare.js";
+import sendSMS from "./utils/sms.js";
+import randomNumber from "./utils/randomNumber.js";
+
 export default async function login() {
   try {
     let c1 = color.xterm(118);
     let c2 = color.xterm(162);
-    let c3 = color.xterm(160);
     let c4 = color.xterm(191);
 
     console.clear();
@@ -40,12 +43,17 @@ export default async function login() {
       return (element.email === data.email)
     });
 
-    let passwordfound = stringtoobject.find((element) => {
-      return element.password === data.password;
+    let searchPassword = stringtoobject.find((element) => {
+      return (element.email === data.email)
+      
     });
-
-
+    let getPassword=searchPassword.password;
     
+
+    let passwordfound= await compareHash(password,getPassword);
+   
+     let otp=randomNumber(5);
+     
     if (!emailfound || !passwordfound) {
       console.log("wrong email and password try again...");
       console.log("Redirecting to login page in 3 seconds ..");
@@ -56,6 +64,11 @@ export default async function login() {
 
     } 
     else {
+      // await sendSMS({
+      // body:`Your OTP is ${otp}`,
+      // phonenumber:verifyPhone
+
+    // });
       console.log(
         "Sucessfully Loged in Redirecting to Home Menu in 4 seconds.."
       );

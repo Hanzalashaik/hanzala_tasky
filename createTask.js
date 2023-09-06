@@ -39,10 +39,10 @@ export default async function createTask() {
       let todo = addTodo;
       let deadline =readline.question("Enter your Deadline (e.g., 'September 5, 2023', '2023-09-05', or '05042023'): ");
       
-      let result =userDate(deadline);
+      let Deadline =userDate(deadline);
       
       
-      emailFound.task.push({ id, todo,result });
+      emailFound.task.push({ id, todo, Deadline });
       let writeData = JSON.stringify(stringToObject);
       await fs.writeFile("db.json", writeData);
       console.log("Todo Added Succesfully");

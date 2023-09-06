@@ -3,9 +3,10 @@ import fs from "fs/promises";
 import color from "cli-color";
 import loading from "loading-cli";
 import main from "./app.js";
+import hash from "./utils/hash.js";
 
-import sendSMS from "./utils/sms.js"
-import send_EMAIL from "./utils/email.js"
+import sendSMS from "./utils/sms.js";
+import send_EMAIL from "./utils/email.js";
 import randomNumber from "./utils/randomNumber.js";
 
 export default async function register() {
@@ -26,17 +27,21 @@ export default async function register() {
     let firstName = readline.question(c2("Enter your name:"));
     let lastName = readline.question(c2("Enter your last name:"));
     let email = readline.questionEMail(c2("Enter your email:"));
-    let password = readline.question(c2("Enter Password:"), {
+    let pass = readline.question(c2("Enter Password:"), {
       hideEchoBack: true,
     });
     let reEnter = readline.question(c4("Re-type Password:"), {
       hideEchoBack: true,
     });
 
+    let password=await hash(pass);
+    // console.log(password);
+    
+
     recheck();
 
     function recheck() {
-      if (password !== reEnter) {
+      if (pass !== reEnter) {
         console.log("Password doesn't match!!");
         reEnter = readline.question(c4("Re-type Password:"), {
           hideEchoBack: true,
@@ -46,7 +51,7 @@ export default async function register() {
     }
 
     let phonenumber = readline.question(c2("Enter your phone number"));
-      let verifyPhone = "+91" + phonenumber;
+    let verifyPhone = "+91" + phonenumber;
     checker(phonenumber);
 
     function checker(phonenumber) {
@@ -55,37 +60,34 @@ export default async function register() {
 
       if (str.length !== 10) {
         console.log("Invalid phone number!!!");
-        phonenumber = readline.question(c2("Enter your phone number with +91:"));
+        phonenumber = readline.question(
+          c2("Enter your phone number with +91:")
+        );
         checker(phonenumber);
       }
     }
     let address = readline.question(c2("Enter your address:"));
     console.log("Wait for few seconds...");
-    
 
-    let otp=randomNumber(5);
+    let otp = randomNumber(5);
 
-    //sending OTP from SMS
-    await sendSMS({
-      body:`Your OTP is ${otp}`,
-      phonenumber:verifyPhone
+    // //sending OTP from SMS
+    // await sendSMS({
+    //   body:`Your OTP is ${otp}`,
+    //   phonenumber:verifyPhone
 
-    });
-    // console.log("send sms");
-    // console.log(otp);
-    
-    
-    
-    // Sending OTP FROM EMAIL
-    await send_EMAIL({
-      subject:"this text subject",
-      text:`Your OTP is ${otp}`,
-      to:email
-  })
-  //  console.log("Send Email");
-  //  console.log(otp);
-   
-   
+    // });
+    console.log("send sms");
+    console.log(otp);
+
+    // // Sending OTP FROM EMAIL
+    //   await send_EMAIL({
+    //     subject:"this text subject",
+    //     text:`Your OTP is ${otp}`,
+    //     to:email
+    // })
+    console.log("Send Email");
+    console.log(otp);
 
     let userOTP = readline.questionInt("Enter your OTP:");
 
