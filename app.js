@@ -1,13 +1,14 @@
 import readline from "readline-sync";
-import register from "./register.js";
-import login from "./login.js";
 import color from "cli-color";
-import createTask from "./createTask.js";
-import getall from "./getAllTask.js"
-import updating from "./updateTask.js"
-import taskdelete from "./deleteTask.js"
-import deleteUsersTask from "./deleteAllTask.js"
-import deleteall from "./accountDelete.js"
+import register from "./users/register.js";
+import login from "./users/login.js"
+import createTask from "./Tasks/createTask.js";
+import getall from "./Tasks/getAllTask.js";
+import updating from "./Tasks/updateTask.js";
+import taskdelete from "./Tasks/deleteTask.js";
+import deleteUsersTask from "./Tasks/deleteAllTask.js";
+import deleteall from "./Tasks/accountDelete.js";
+import forgotPassword from "./users/forgotPassword.js"
 
 export default async function main() {
   try {
@@ -26,7 +27,18 @@ export default async function main() {
       )
     );
 
-    let options = ["For Exit", "Register", "Login","Create Task","Get All Task","Update Task","Delete Task","Delete All Task","Delete Account"];
+    let options = [
+      "For Exit",
+      "Register",
+      "Login",
+      "Create Task",
+      "Get All Task",
+      "Update Task",
+      "Delete Task",
+      "Delete All Task",
+      "Delete Account",
+      "Forgot Password",
+    ];
 
     options.forEach((value, index) => {
       console.log(`${index + 1}.${value}`);
@@ -74,6 +86,10 @@ export default async function main() {
 
       case "9":
         await deleteall();
+        break;
+
+      case "10":
+        await forgotPassword();
         break;
 
       default:

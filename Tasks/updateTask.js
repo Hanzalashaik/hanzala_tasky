@@ -1,23 +1,26 @@
 import readline from "readline-sync";
 import fs from "fs/promises";
-import main from "./app.js";
 import color from "cli-color";
 import loading from "loading-cli";
 
-export default async function taskdelete() {
+import main from "../app.js";
+
+export default async function updating() {
   try {
     let c1 = color.xterm(118);
     console.clear();
     
+
     console.log(
       c1(
         `        
-          --------------------------DELETE ALL TASKS-------------------------
+          --------------------------UPDATING TASKS-------------------------
          `
       )
     );
-    let email = readline.questionEMail("Enter your email to delete the task:");
+    let email = readline.questionEMail("Enter your email to update:");
     let id = readline.question("Enter your id:");
+    let newtask = readline.question("Enter your new Task:");
     let read = await fs.readFile("db.json", "utf-8");
 
     let stringtoObject = JSON.parse(read);
@@ -29,7 +32,7 @@ export default async function taskdelete() {
 
     if (!obj) {
       console.log("Your Email is wrong..");
-      taskdelete();
+      updating();
     } else {
       let choose = obj.task.find((element) => {
         return element.id === id;
@@ -38,14 +41,14 @@ export default async function taskdelete() {
 
       if (!choose) {
         console.log("Given id is wrong....");
-        taskdelete();
+        updating();
       } else {
-        choose.todo = "";
+        choose.todo = newtask;
 
         let objtostring = JSON.stringify(stringtoObject);
 
         await fs.writeFile("db.json", objtostring);
-        console.log("task is deleted sucessfully!!");
+        console.log("New Task Updated!!");
         console.log("Redirecting to home menu in 4 seconds....");
 
         let load = loading({
@@ -57,7 +60,7 @@ export default async function taskdelete() {
           load.stop();
           main();
         }, 4000);
-        
+
       }
     }
   } catch (error) {

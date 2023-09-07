@@ -1,11 +1,12 @@
 import readline from "readline-sync";
 import fs from "fs/promises";
 import color from "cli-color";
-import main from "./app.js";
+
+import main from "../app.js";
 import loading from "loading-cli";
-import compareHash from "./utils/bcryptCompare.js";
-import sendSMS from "./utils/sms.js";
-import randomNumber from "./utils/randomNumber.js";
+import compareHash from "../utils/bcryptCompare.js";
+import send_EMAIL from "../utils/email.js";
+import randomNumber from "..utils/randomNumber.js";
 
 export default async function login() {
   try {
@@ -64,11 +65,11 @@ export default async function login() {
 
     } 
     else {
-      // await sendSMS({
-      // body:`Your OTP is ${otp}`,
-      // phonenumber:verifyPhone
-
-    // });
+      //    await send_EMAIL({
+    //     subject:"this text subject",
+    //     text:`Your OTP is ${otp}`,
+    //     to:email
+    // })
       console.log(
         "Sucessfully Loged in Redirecting to Home Menu in 4 seconds.."
       );

@@ -2,12 +2,13 @@ import readline from "readline-sync";
 import fs from "fs/promises";
 import color from "cli-color";
 import loading from "loading-cli";
-import main from "./app.js";
-import hash from "./utils/hash.js";
 
-import sendSMS from "./utils/sms.js";
-import send_EMAIL from "./utils/email.js";
-import randomNumber from "./utils/randomNumber.js";
+
+import main from "../app.js";
+import hash from "../utils/hash.js";
+import sendSMS from "../utils/sms.js";
+import send_EMAIL from "../utils/email.js";
+import randomNumber from "../utils/randomNumber.js";
 
 export default async function register() {
   try {

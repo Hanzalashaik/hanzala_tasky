@@ -1,7 +1,7 @@
 import fs from "fs/promises";
 import readline from "readline-sync";
 import color from "cli-color";
-import main from "./app.js";
+import main from "../app.js";
 import loading from "loading-cli";
 
 export default async function deleteUsersTask() {

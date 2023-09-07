@@ -1,7 +1,5 @@
 import config from "config";
 import Twilio from "twilio";
-import register from "../register.js";
-
 
 let { SID, TOKEN, NUMBER } = config.get("SEND_SMS");
 
@@ -17,5 +15,3 @@ export default async function sendSMS(smsData) {
     console.log(error);
   }
 }
-
-

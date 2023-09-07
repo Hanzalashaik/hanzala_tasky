@@ -1,10 +1,10 @@
 import readline from "readline-sync";
 import fs from "fs/promises";
-import main from "./app.js";
+import main from "../app.js";
 import color from "cli-color";
 import loading from "loading-cli";
-import login from "./login.js"
-import userDate from "./utils/dates.js";
+import login from "../users/login.js"
+import userDate from "../utils/dates.js";
 
 export default async function createTask() {
   try {

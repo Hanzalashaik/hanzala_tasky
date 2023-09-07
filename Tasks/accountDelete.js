@@ -2,7 +2,7 @@ import fs from "fs/promises";
 import readline from "readline-sync";
 import color from "cli-color";
 import loading from "loading-cli";
-import main from "./app.js";
+import main from "../app.js";
 
 export default async function deleteall() {
   try {
