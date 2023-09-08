@@ -1,29 +1,22 @@
 [
     {
-        "firstName": "ali",
-        "lastName": "mohd",
-        "email": "mohd@mgmail.com",
-        "password": "$2b$10$c7TAaDIH3D9pHMzCzFsbOeNacSnruYCy1CGZUQoXe7cheaDvpE8OS",
-        "phonenumber": "7876745635",
-        "address": "hyd",
-        "task": []
-    },
-    {
-        "firstName": "suhail",
-        "lastName": "roushan",
-        "email": "suhail@code.in",
-        "password": "$2b$10$WQWwyPnScjSwJ1EXQvTfMeqziv6SiveMGbIY02uPyc3ot1U/okp3e",
-        "phonenumber": "6374654657",
-        "address": "hyd",
-        "task": []
-    },
-    {
         "firstName": "hanzala",
         "lastName": "shaik",
         "email": "shaikhhanzala27@gmail.com",
-        "password": "$2b$10$owhby8xrKJtqugOqi6jEO.N6SzfFpd2PpaGINvnegw01VCoFgmpkS",
-        "phonenumber": "7564536267",
+        "password": "$2b$10$9Tv1elP5gQSj3Q5gAT2tTe2fcBraa5jxsLaKFgUCY6XVKffB7rQle",
+        "phonenumber": "9857465748",
         "address": "hyd",
-        "task": []
+        "task": [
+            {
+                "id": "syumbceokn",
+                "todo": "project",
+                "Deadline": "08/09/2023"
+            },
+            {
+                "id": "su0u4pg4l2",
+                "todo": "playing",
+                "Deadline": "09/09/2023"
+            }
+        ]
     }
 ]

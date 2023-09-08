@@ -6,7 +6,7 @@ import main from "../app.js";
 import loading from "loading-cli";
 import compareHash from "../utils/bcryptCompare.js";
 import send_EMAIL from "../utils/email.js";
-import randomNumber from "..utils/randomNumber.js";
+import randomNumber from "../utils/randomNumber.js";
 
 export default async function login() {
   try {
