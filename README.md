@@ -8,40 +8,42 @@ Hanzala's Tasky is a Node.js backend project for a simple task management applic
 
 #### The application provides various operations to efficiently manage tasks. Below are the available operations:
 
-1.Exit
+1.<b>Exit</b></br>
     Terminate the application.
 
-2.Register
+2.<b>Register</b></br>
     Register a new user account.
-![Image](https://github.com/Hanzalashaik/hanzala_tasky/blob/main/images/Register.png"Image")
 
-3.Login
+3.<b>Login</b><br>
     Log in to an existing user account.
-![Image](https://github.com/Hanzalashaik/hanzala_tasky/blob/main/images/login.png"Image")
 
-4.Create Task
+4.<b>Create Task</b></br>
     Add a new task to the user's task list.
-![Image](https://github.com/Hanzalashaik/hanzala_tasky/blob/main/images/create%20task.png"Image")
 
-5.Get All Task
+5.<b>Get All Task</b></br>
     Retrieve a list of all tasks associated with the user.
 
-6.Update Task
+6.<b>Update Task</b></br>
     Modify details of an existing task.
 
-7.Delete Task
+7.<b>Delete Task</b></br>
     Remove a specific task from the user's task list.
 
-8.Delete All Task
+8.<b>Delete All Task</b></r>
     Clear all tasks from the user's task list.
 
-9.Delete Account
+9.<b>Delete Account</b></br>
     Delete the user account along with all associated tasks.
 
-10.Forgot Password
+10.<b>Forgot Password</b></br>
     Reset the user's password in case it is forgotten.
 
-<b><i>Note</i></b>: It is a Complete Backend Application using Node.js.
+<b><i>Note</i></b>: 
+<h1>Backend Details</h1>
+
+### File System (fs) Module:
+
+The project utilizes the Node.js File System (fs) module to persistently store user data and tasks.
 
 
 ## To Install and Test
@@ -96,3 +98,12 @@ The script makes sure that the development server restarts automatically when we
 ### Now start your server
 ```bash
 nodemon app.js
+
+```
+
+### Additional Notes
+
+This is a backend project, and it focuses on managing tasks with a simple command-line interface.
+Feel free to customize and extend the project according to your requirements.
+Ensure to handle errors and edge cases for a robust application.
+Happy task managing!.
